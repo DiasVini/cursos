@@ -3,9 +3,7 @@ pipeline {
   stages {
     stage('Create Sonar Properties File') {
       steps {
-        writeFile(file: 'sonar-project.properties', text: 'sonar.projectKey=atris:${scm.getUserRemoteConfigs()[0].getUrl().tokenize(\'/\')[3].split("\\\\.")[0]} sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/** sonar.python.bandit.reportPaths="./bandit" sonar.python.flake8.reportPaths="./flake8" sonar.python.pylint.reportPaths="./pylint" sonar.go.govet.reportPaths="./govet" sonar.go.golangci-lint.reportPaths="./golangci ')
-        sh '''ls
-cat sonar-project.properties'''
+        writeFile(file: 'sonar-project.properties', text: 'sonar.projectKey=atris:${scm.getUserRemoteConfigs()[0].getUrl().tokenize(\'/\')[3].split("\\\\.")[0]}\n sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/**\n sonar.python.bandit.reportPaths="./bandit"\n sonar.python.flake8.reportPaths="./flake8"\n sonar.python.pylint.reportPaths="./pylint"\n sonar.go.govet.reportPaths="./govet"\n sonar.go.golangci-lint.reportPaths="./golangci ')
       }
     }
 
