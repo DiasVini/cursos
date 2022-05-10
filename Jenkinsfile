@@ -2,7 +2,11 @@ String determineRepoName() {
     return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
 }
 pipeline {
-  agent any
+ agent {
+    node {
+      label 'jenkinsAgentBuild-Basic'
+    }
+  }
   stages {
     stage('Create Sonar Properties File') {
       steps {
