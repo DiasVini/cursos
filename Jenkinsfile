@@ -18,16 +18,7 @@ cat sonar-project.properties'''
       }
     }
 
-    stage('External Analyzers Python') {
-      steps {
-        sh '''
-            mkdir govet
-            mkdir golangci
-            go vet ./golang-COD3R/arrayslicemap/slicemake/* > govet/govet.txt
-            golangci-lint run ./ > golangci/golanci.txt
-            '''
-      }
-    }
+   
 
     stage('Prepare and run SonarQube') {
       steps {
