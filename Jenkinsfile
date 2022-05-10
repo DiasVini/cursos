@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    node {
-      label 'jenkinsAgentBuild-Basic'
-    }
-
-  }
+  agent any
   stages {
     stage('Create Sonar Properties File') {
       steps {
