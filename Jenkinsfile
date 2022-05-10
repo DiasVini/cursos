@@ -23,15 +23,26 @@ sonar.go.golangci-lint.reportPaths="./golangci"
       }
     }
 
-    stage('External Analyzers') {
+  }
+
+    stage('External Analyzers Python') {
       steps {
-        sh '''mkdir govet
+        sh '''
+mkdir govet
         mkdir golangci
 go tool vet ./ > govet/govet.txt
 golangci-lint run ./ > golangci/golanci.txt
 '''
       }
     }
+    stage('Prepare and run SonarQube') {
+      steps {
+        withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'SonarQubeAuthentication') {
+          sh '/var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube/bin/sonar-scanner'
+        }
 
-  
+      }
+    }  
+
+  }
 }
