@@ -8,6 +8,7 @@ pipeline {
     }
 
   }
+  stages{
     stage('Create Sonar Properties File') {
       steps {
           def repoName = determineRepoName()
@@ -40,5 +41,5 @@ pipeline {
 
       }
     }  
-
+  }
   }
