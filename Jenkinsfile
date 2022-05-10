@@ -15,7 +15,6 @@ pipeline {
   stages{
     stage('Create Sonar Properties File') {
       steps {
-        repoName = determineRepoName()
         sh '''
             sonar.projectKey=atris:${params.REPONAME}
             sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/**
