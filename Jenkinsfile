@@ -11,7 +11,7 @@ pipeline {
     stage('Create Sonar Properties File') {
       steps {
           script {
-              writeFile file: 'sonar-project.properties', text: 'sonar.projectKey=dias:'+env.REPO_NAME+'\n sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/**\n sonar.python.bandit.reportPaths="./bandit"\n sonar.python.flake8.reportPaths="./flake8"\n sonar.python.pylint.reportPaths="./pylint"\n sonar.go.govet.reportPaths="./govet"\n sonar.go.golangci-lint.reportPaths="./golangci '
+              writeFile file: 'sonar-project.properties', text: 'sonar.projectKey=dias:'+env.REPO_NAME+'\n sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/**\n sonar.python.bandit.reportPaths="./bandit"\n sonar.python.flake8.reportPaths="./flake8"\n sonar.python.pylint.reportPaths="./pylint"\n sonar.go.govet.reportPaths="./govet"\n sonar.go.golangci-lint.reportPaths="./golangci" '
           }
                   sh '''ls
 cat sonar-project.properties'''
