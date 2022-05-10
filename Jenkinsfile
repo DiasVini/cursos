@@ -3,7 +3,7 @@ String determineRepoName() {
 }
 
 pipeline {
-    def repoName = determineRepoName()
+
   agent {
     node {
       label 'jenkinsAgentBuild-Basic'
@@ -13,7 +13,7 @@ pipeline {
   stages{
     stage('Create Sonar Properties File') {
       steps {
-          
+        repoName = determineRepoName()
         sh '''
             sonar.projectKey=atris:${repoName}
             sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/**
