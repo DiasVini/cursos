@@ -12,27 +12,24 @@ pipeline {
       steps {
           def repoName = determineRepoName()
         sh '''
-sonar.projectKey=atris:${repoName}
-sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/**
-sonar.python.bandit.reportPaths="./bandit"
-sonar.python.flake8.reportPaths="./flake8"
-sonar.python.pylint.reportPaths="./pylint"
-sonar.go.govet.reportPaths="./govet"
-sonar.go.golangci-lint.reportPaths="./golangci"
-        '''
+            sonar.projectKey=atris:${repoName}
+            sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/**
+            sonar.python.bandit.reportPaths="./bandit"
+            sonar.python.flake8.reportPaths="./flake8"
+            sonar.python.pylint.reportPaths="./pylint"
+            sonar.go.govet.reportPaths="./govet"
+            sonar.go.golangci-lint.reportPaths="./golangci"
+            '''
       }
     }
-
-  }
-
     stage('External Analyzers Python') {
       steps {
         sh '''
-mkdir govet
-        mkdir golangci
-go tool vet ./ > govet/govet.txt
-golangci-lint run ./ > golangci/golanci.txt
-'''
+            mkdir govet
+            mkdir golangci
+            go tool vet ./ > govet/govet.txt
+            golangci-lint run ./ > golangci/golanci.txt
+            '''
       }
     }
     stage('Prepare and run SonarQube') {
@@ -45,4 +42,3 @@ golangci-lint run ./ > golangci/golanci.txt
     }  
 
   }
-}
