@@ -9,15 +9,12 @@ pipeline {
       label 'jenkinsAgentBuild-Basic'
     }
   }
-  parameters{
-      string(name:'REPONAME', defaultValue: determineRepoName(), description: 'repository name')
-  }
+ 
   stages{
     stage('Create Sonar Properties File') {
       steps {
-        repoName = determineRepoName()
         sh '''
-            sonar.projectKey=atris:'''+${params.REPONAME}+'''
+            sonar.projectKey=atris:'''+${determineRepoName()}+'''
             sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/**
             sonar.python.bandit.reportPaths="./bandit"
             sonar.python.flake8.reportPaths="./flake8"
