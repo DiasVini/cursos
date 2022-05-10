@@ -33,6 +33,6 @@ cat sonar-project.properties'''
 
   }
     environment {
-        REPO_NAME = scm.getUserRemoteConfigs()[0].getUrl().tokenize(\'/\')[3].split("\\\\.")[0]
+        REPO_NAME = scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
     }
 }
