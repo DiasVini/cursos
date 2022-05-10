@@ -6,8 +6,8 @@ pipeline {
     node {
       label 'jenkinsAgentBuild-Basic'
     }
-def repoName = determineRepoName()
   }
+  def repoName = determineRepoName()
   stages{
     stage('Create Sonar Properties File') {
       steps {
