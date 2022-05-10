@@ -10,11 +10,14 @@ pipeline {
     }
   }
  
+  environment {
+      REPO_NAME = determineRepoName()
+  }
   stages{
     stage('Create Sonar Properties File') {
       steps {
         sh '''
-            sonar.projectKey=atris:'''+${determineRepoName()}+'''
+            sonar.projectKey=atris:${env.REPO_NAME}
             sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/**
             sonar.python.bandit.reportPaths="./bandit"
             sonar.python.flake8.reportPaths="./flake8"
