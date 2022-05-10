@@ -1,13 +1,13 @@
 String determineRepoName() {
     return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
 }
+  def repoName = determineRepoName()
 pipeline {
   agent {
     node {
       label 'jenkinsAgentBuild-Basic'
     }
   }
-  def repoName = determineRepoName()
   stages{
     stage('Create Sonar Properties File') {
       steps {
