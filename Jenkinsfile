@@ -35,5 +35,5 @@ golangci-lint run ./ > golangci/golanci.txt
       }
     }
 
-  }
+  
 }
