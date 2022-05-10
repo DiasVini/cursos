@@ -12,7 +12,7 @@ pipeline {
 
   stages{
     stage('Create Sonar Properties File') {
-        repoName = determineRepoName()
+        def repoName = determineRepoName()
       steps {
         sh '''
             sonar.projectKey=atris:${repoName}
