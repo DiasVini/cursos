@@ -23,8 +23,6 @@ sonar.go.golangci-lint.reportPaths="./golangci"
       }
     }
 
-  }
-
     stage('External Analyzers') {
       steps {
         sh '''mkdir govet
