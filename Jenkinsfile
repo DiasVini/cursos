@@ -23,7 +23,7 @@ cat sonar-project.properties'''
         sh '''
             mkdir govet
             mkdir golangci
-            go vet ./*/* > govet/govet.txt
+            go vet ./*/*/*/* > govet/govet.txt
             golangci-lint run ./ > golangci/golanci.txt
             '''
       }
