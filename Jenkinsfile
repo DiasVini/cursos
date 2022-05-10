@@ -3,8 +3,7 @@ pipeline {
   stages {
     stage('Create Sonar Properties File') {
       steps {
-        sh ''' echo ${SONAR_PROPERTIES} >> sonar-project.properties" '''
-            
+        writeFile(file: 'sonar-project.properties', text: 'sonar.projectKey=atris:${scm.getUserRemoteConfigs()[0].getUrl().tokenize(\'/\')[3].split("\\\\.")[0]} sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/** sonar.python.bandit.reportPaths="./bandit" sonar.python.flake8.reportPaths="./flake8" sonar.python.pylint.reportPaths="./pylint" sonar.go.govet.reportPaths="./govet" sonar.go.golangci-lint.reportPaths="./golangci ')
       }
     }
 
@@ -30,7 +29,7 @@ pipeline {
 
   }
   environment {
-    SONAR_PROPERTIES = ''' sonar.projectKey=atris:${scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]}
+    SONAR_PROPERTIES = ''' sonar.projectKey=atris:${scm.getUserRemoteConfigs()[0].getUrl().tokenize(\'/\')[3].split("\\.")[0]}
 sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/**
 sonar.python.bandit.reportPaths="./bandit"
 sonar.python.flake8.reportPaths="./flake8"
