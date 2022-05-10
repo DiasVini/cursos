@@ -7,14 +7,14 @@ pipeline {
   stages {
     stage('Create Sonar Properties File') {
       steps {
-        sh '''echo "
+        sh '''echo 
 sonar.projectKey=atris:${REPO_NAME}
 sonar.coverage.exclusions=**/bandit/**, **/flake8/**, **/pylint/**, **/govet/**, **/golangci/**
 sonar.python.bandit.reportPaths=\'./bandit\'
 sonar.python.flake8.reportPaths=\'./flake8\'
 sonar.python.pylint.reportPaths=\'./pylint\'
 sonar.go.govet.reportPaths=\'./govet\'
-sonar.go.golangci-lint.reportPaths=\'./golangci\' ">> sonar-project.properties"
+sonar.go.golangci-lint.reportPaths=\'./golangci\' >> sonar-project.properties"
             '''
       }
     }
